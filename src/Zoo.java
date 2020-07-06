@@ -1,90 +1,69 @@
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Zoo {
-    private static void AddPet() {
+    private static <animalInput> void AddPet() {
         Scanner input = new Scanner(System.in);
 
-        Map<String, Animal> map = new Hashtable<String, Animal>();
+        LinkedList<Animal> animals = new LinkedList<Animal>();
 
         int amountOfPets = 0;
 
         System.out.println("You have" + " " + amountOfPets + " " + "pet(s)");
 
-        while (amountOfPets >= 0) {
+        while (true) {
             System.out.println("Which pet do you want to add?");
 
             System.out.println("1.Cat\n2.Dog\n3.Fish\n4.Spider\n5.Snake\n6.Panda\n0.Quit program");
 
-            Animal animalInput = new Animal();
+            Animal animalInput;
 
             System.out.println("Enter the number:");
             int code = input.nextInt();
-            animalInput.name = input.nextLine();
+            input.nextLine();
 
             switch (code) {
                 case 1:
-                    animalInput.animalType = "cat";
-                    amountOfPets += 1;
-                    animalInput.legs = 4;
-                    map.put(animalInput.animalType, animalInput);
+                    animalInput = new Animal("cat", 4);
                     break;
                 case 2:
-                    animalInput.animalType = "dog";
-                    amountOfPets += 1;
-                    animalInput.legs = 4;
-                    map.put(animalInput.animalType, animalInput);
+                    animalInput = new Animal("dog", 4);
                     break;
                 case 3:
-                    animalInput.animalType = "fish";
-                    amountOfPets += 1;
-                    animalInput.legs = 0;
-                    map.put(animalInput.animalType, animalInput);
-
+                    animalInput = new Animal("fish", 0);
                     break;
                 case 4:
-                    animalInput.animalType = "spider";
-                    amountOfPets += 1;
-                    animalInput.legs = 8;
-                    map.put(animalInput.animalType, animalInput);
+                    animalInput = new Animal("spider", 8);
                     break;
                 case 5:
-                    animalInput.animalType = "snake";
-                    amountOfPets += 1;
-                    animalInput.legs = 0;
-                    map.put(animalInput.animalType, animalInput);
+                    animalInput = new Animal("snake", 0);
                     break;
                 case 6:
-                    animalInput.animalType = "panda";
-                    amountOfPets += 1;
-                    animalInput.legs = 4;
-                    map.put(animalInput.animalType, animalInput);
+                    animalInput = new Animal("panda", 4);
                     break;
                 default:
                     return;
             }
 
+            animals.add(animalInput);
 
-            System.out.println("How do you want to call your" + " " + animalInput.animalType + "?");
+            amountOfPets += 1;
+
+            System.out.println("How do you want to call your" + " " + animalInput.getAnimalType() + "?");
             String nameInput = input.nextLine();
-            animalInput.name = nameInput;
+            animalInput.setName(nameInput);
 
             System.out.println("You have " + " " + amountOfPets + " " + "pet(s)");
 
-            for (Map.Entry<String, Animal> entry : map.entrySet()) {
-                Animal animal = entry.getValue();
-                System.out.println(animal.name + " " + "is a" + " " + animal.animalType + " and has" + " " + animal.legs + " " + "leg(s)");
+            for (Animal animal : animals) {
+                System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
             }
-
         }
     }
 
     public static void main(String[] args) {
 
         AddPet();
-
-
     }
 }
 
