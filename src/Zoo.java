@@ -2,7 +2,16 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Zoo {
-    private static <animalInput> void AddPet() {
+
+    private static void OptionList() {
+        String[] options = {"Quit the program", "Cat", "Dog", "Fish", "Spider", "Snake", "Panda",};
+
+        for (int i = 0; i < options.length; i++) {
+            System.out.println(i + "." + options[i + 0]);
+        }
+    }
+
+    private static void AddPet() {
         Scanner input = new Scanner(System.in);
 
         LinkedList<Animal> animals = new LinkedList<Animal>();
@@ -14,7 +23,7 @@ public class Zoo {
         while (true) {
             System.out.println("Which pet do you want to add?");
 
-            System.out.println("1.Cat\n2.Dog\n3.Fish\n4.Spider\n5.Snake\n6.Panda\n0.Quit program");
+            OptionList();
 
             Animal animalInput;
 
@@ -24,39 +33,41 @@ public class Zoo {
 
             switch (code) {
                 case 1:
-                    animalInput = new Animal("cat", 4);
+                    animalInput = new Cat();
                     break;
                 case 2:
-                    animalInput = new Animal("dog", 4);
+                    animalInput = new Dog();
                     break;
                 case 3:
-                    animalInput = new Animal("fish", 0);
+                    animalInput = new Fish();
                     break;
                 case 4:
-                    animalInput = new Animal("spider", 8);
+                    animalInput = new Spider();
                     break;
                 case 5:
-                    animalInput = new Animal("snake", 0);
+                    animalInput = new Snake();
                     break;
                 case 6:
-                    animalInput = new Animal("panda", 4);
+                    animalInput = new Panda();
                     break;
                 default:
                     return;
             }
 
+            animalInput.getAnimalType();
+
             animals.add(animalInput);
 
             amountOfPets += 1;
 
-            System.out.println("How do you want to call your" + " " + animalInput.getAnimalType() + "?");
+            System.out.println("How do you want to call your" + " " + animalInput.getAnimalType() + " " + "?");
             String nameInput = input.nextLine();
             animalInput.setName(nameInput);
 
             System.out.println("You have " + " " + amountOfPets + " " + "pet(s)");
 
             for (Animal animal : animals) {
-                System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
+                System.out.println(animal.getName() + " " + "is a" + " " + animalInput.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
             }
         }
     }

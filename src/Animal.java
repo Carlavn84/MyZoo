@@ -1,10 +1,11 @@
-public class Animal {
+public abstract class Animal {
 
-    public String getAnimalType() {
-        return animalType;
+    private String name;
+    private int legs;
+
+    public Animal(int legs) {
+        this.legs = legs;
     }
-
-    private String animalType;
 
     public String getName() {
         return name;
@@ -14,16 +15,10 @@ public class Animal {
         this.name = name;
     }
 
-    private String name;
-
     public int getLegs() {
         return legs;
     }
 
-    private int legs;
-
-    public Animal(String animalType, int legs) {
-        this.animalType = animalType;
-        this.legs = legs;
-    }
+    public abstract String getAnimalType();
 }
+
