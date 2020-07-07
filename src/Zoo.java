@@ -1,64 +1,60 @@
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Zoo {
 
-    private static Set<Class<? extends Animal>> animalClasses;
+    private static List<Class<? extends Animal>> animalClasses;
 
     static {
-        animalClasses = new HashSet();
+        animalClasses = new LinkedList();
         animalClasses.add(Cat.class);
         animalClasses.add(Dog.class);
         animalClasses.add(Fish.class);
         animalClasses.add(Spider.class);
         animalClasses.add(Snake.class);
         animalClasses.add(Panda.class);
+        Collections.shuffle(animalClasses);
     }
 
-    private void OptionList() {
-        for (Class animalClass : animalClasses) {
-            String animalNameClass = animalClass.getSimpleName();
-
-            switch (animalNameClass) {
-                case "Cat":
-                    System.out.println("1. Cat");
-                    break;
-                case "Dog":
-                    System.out.println("2. Dog");
-                    break;
-                case "Fish":
-                    System.out.println("3. Fish");
-                    break;
-                case "Spider":
-                    System.out.println("4. Spider");
-                    break;
-                case "Snake":
-                    System.out.println("5. Snake");
-                    break;
-                case "Panda":
-                    System.out.println("6. Panda");
-                    break;
-                default:
-                    return;
-            }
+    private void showOptions(List<Class<? extends Animal>> animalList) {
+        for (int i = 1; i <= animalList.size(); i++) {
+            Class<? extends Animal> animalType = animalList.get(i - 1);
+            String typeName = animalType.getSimpleName();
+            System.out.println(i + "." + typeName);
         }
     }
 
-    private void AddPet() {
+//    private List<Class<? extends Animal>> makeAnimalList() {
+//        List<Class<? extends Animal>> animalList = new ArrayList<>(animalClasses);
+//        System.out.println("This is animalList" + animalList);
+//        return animalList;
+//}
+
+
+//    private void showOptions(List<Class<? extends Animal>> animalList) {
+//        ListIterator<Class<? extends Animal>> iterator = animalList.listIterator();
+//
+//        while (iterator.hasNext()) {
+//
+//                System.out.println(iterator.nextIndex() + "." + iterator.next());
+//        }
+//    }
+
+    private void doEverything(List<Class<? extends Animal>> animalList) {
         Scanner input = new Scanner(System.in);
 
         LinkedList<Animal> animals = new LinkedList<Animal>();
 
-        int amountOfPets = 0;
-
-        System.out.println("You have" + " " + amountOfPets + " " + "pet(s)");
-
         while (true) {
+
+            System.out.println("You have " + animals.size() + " pet(s)");
+
+            for (Animal animal : animals) {
+                System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
+            }
+
+
             System.out.println("Which pet do you want to add?");
 
-            OptionList();
 
             Animal animalInput;
 
@@ -66,50 +62,33 @@ public class Zoo {
             int code = input.nextInt();
             input.nextLine();
 
-            switch (code) {
-                case 1:
-                    animalInput = new Cat();
-                    break;
-                case 2:
-                    animalInput = new Dog();
-                    break;
-                case 3:
-                    animalInput = new Fish();
-                    break;
-                case 4:
-                    animalInput = new Spider();
-                    break;
-                case 5:
-                    animalInput = new Snake();
-                    break;
-                case 6:
-                    animalInput = new Panda();
-                    break;
-                default:
-                    return;
+            Class<? extends Animal> clazz;
+
+            try {
+                clazz = animalList.get(code - 1);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid number! You are not very smart. I will just give you a panda.");
+                clazz = Panda.class;
             }
 
-            animalInput.getAnimalType();
+            try {
+                animalInput = clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                throw new RuntimeException("Oh oh, something went wrong", e);
+            }
 
             animals.add(animalInput);
 
-            amountOfPets += 1;
-
-            System.out.println("How do you want to call your" + " " + animalInput.getAnimalType() + " " + "?");
+            System.out.println("How do you want to call your " + animalInput.getAnimalType() + " ?");
             String nameInput = input.nextLine();
             animalInput.setName(nameInput);
-
-            System.out.println("You have " + " " + amountOfPets + " " + "pet(s)");
-
-            for (Animal animal : animals) {
-                System.out.println(animal.getName() + " " + "is a" + " " + animalInput.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
-            }
         }
     }
 
     public static void main(String[] args) {
         Zoo zoo = new Zoo();
-        zoo.AddPet();
+
+        zoo.showOptions(animalClasses);
+        zoo.doEverything(animalClasses);
     }
 }
-
