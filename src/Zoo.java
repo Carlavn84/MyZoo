@@ -1,17 +1,52 @@
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Zoo {
 
-    private static void OptionList() {
-        String[] options = {"Quit the program", "Cat", "Dog", "Fish", "Spider", "Snake", "Panda",};
+    private static Set<Class<? extends Animal>> animalClasses;
 
-        for (int i = 0; i < options.length; i++) {
-            System.out.println(i + "." + options[i + 0]);
+    static {
+        animalClasses = new HashSet();
+        animalClasses.add(Cat.class);
+        animalClasses.add(Dog.class);
+        animalClasses.add(Fish.class);
+        animalClasses.add(Spider.class);
+        animalClasses.add(Snake.class);
+        animalClasses.add(Panda.class);
+    }
+
+    private void OptionList() {
+        for (Class animalClass : animalClasses) {
+            String animalNameClass = animalClass.getSimpleName();
+
+            switch (animalNameClass) {
+                case "Cat":
+                    System.out.println("1. Cat");
+                    break;
+                case "Dog":
+                    System.out.println("2. Dog");
+                    break;
+                case "Fish":
+                    System.out.println("3. Fish");
+                    break;
+                case "Spider":
+                    System.out.println("4. Spider");
+                    break;
+                case "Snake":
+                    System.out.println("5. Snake");
+                    break;
+                case "Panda":
+                    System.out.println("6. Panda");
+                    break;
+                default:
+                    return;
+            }
         }
     }
 
-    private static void AddPet() {
+    private void AddPet() {
         Scanner input = new Scanner(System.in);
 
         LinkedList<Animal> animals = new LinkedList<Animal>();
@@ -73,8 +108,8 @@ public class Zoo {
     }
 
     public static void main(String[] args) {
-
-        AddPet();
+        Zoo zoo = new Zoo();
+        zoo.AddPet();
     }
 }
 

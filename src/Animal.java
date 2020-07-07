@@ -8,7 +8,7 @@ public abstract class Animal {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -16,7 +16,7 @@ public abstract class Animal {
     }
 
     public int getLegs() {
-        return legs;
+        return this.legs;
     }
 
     public abstract String getAnimalType();
