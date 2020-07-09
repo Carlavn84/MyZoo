@@ -3,11 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Zoo {
+    public LinkedList<Animal> pets = new LinkedList<Animal>();
+    ;
 
-    Animal createPets(Class<? extends Animal> animal) {
+    List<Animal> createPets(Class<? extends Animal> animal) {
         Scanner input = new Scanner(System.in);
-
-        LinkedList<Animal> pets = new LinkedList<Animal>();
 
         Animal animalInput;
 
@@ -24,17 +24,8 @@ public class Zoo {
         System.out.println("How do you want to call your " + animalType + " ?");
         nameInput = input.nextLine();
         animalInput.setName(nameInput);
-
-        return animalInput;
+        return pets;
     }
-
-//    List<Animal> addPetsToZoo(Animal animal) {
-//        LinkedList<Animal> pets = new LinkedList<Animal>();
-//
-//        pets.add(animal);
-//        System.out.println("TETSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-//        return pets;
-//    }
 
     void showPets(List<Animal> animals) {
         System.out.println("You have " + animals.size() + " pet(s)");

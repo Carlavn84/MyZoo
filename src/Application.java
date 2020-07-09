@@ -19,33 +19,22 @@ public class Application {
 
     public static void main(String[] args) {
 
-        Application application = new Application();
         Zoo zoo = new Zoo();
 
         UserInterface userInterface = new UserInterface();
 
-        userInterface.startTheGame();
+        System.out.println("Hello there! Welcome to the San Diego Zoo!!!");
 
-        while (true) {
-
-
+        boolean stayInGame = true;
+        while (stayInGame) {
             userInterface.showOptions(animalClasses);
 
             Class animal = userInterface.addPet(animalClasses);
 
-            Animal pet = zoo.createPets(animal);
+            List pets = zoo.createPets(animal);
 
-            List animals = application.addPetsToZoo(pet);
-
-            zoo.showPets(animals );
-
+            zoo.showPets(pets);
         }
-    }
-
-    private List<Animal> addPetsToZoo(Animal animal) {
-        LinkedList<Animal> pets = new LinkedList<Animal>();
-        pets.add(animal);
-        return pets;
     }
 }
 
