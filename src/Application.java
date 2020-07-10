@@ -25,8 +25,7 @@ public class Application {
 
        userInterface.welcomeToGame();
 
-        boolean stayInGame = true;
-        while (stayInGame) {
+        while (true) {
             userInterface.showOptions(animalClasses);
 
             Class animal = userInterface.addPet(animalClasses);
@@ -35,9 +34,7 @@ public class Application {
 
             zoo.showPets();
 
-            String codeExitGame = userInterface.makeChoiceToStayInGame();
 
-            stayInGame = !userInterface.exitTheGame(codeExitGame);
         }
     }
 }
