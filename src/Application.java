@@ -23,7 +23,7 @@ public class Application {
 
         UserInterface userInterface = new UserInterface();
 
-        System.out.println("Hello there! Welcome to the San Diego Zoo!!!");
+       userInterface.welcomeToGame();
 
         boolean stayInGame = true;
         while (stayInGame) {
@@ -31,9 +31,13 @@ public class Application {
 
             Class animal = userInterface.addPet(animalClasses);
 
-            List pets = zoo.createPets(animal);
+            zoo.createPets(animal);
 
-            zoo.showPets(pets);
+            zoo.showPets();
+
+            String codeExitGame = userInterface.makeChoiceToStayInGame();
+
+            stayInGame = !userInterface.exitTheGame(codeExitGame);
         }
     }
 }

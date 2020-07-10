@@ -27,10 +27,10 @@ public class Zoo {
         return pets;
     }
 
-    void showPets(List<Animal> animals) {
-        System.out.println("You have " + animals.size() + " pet(s)");
+    void showPets() {
+        System.out.println("You have " + pets.size() + " pet(s)");
 
-        for (Animal animal : animals) {
+        for (Animal animal : pets) {
             System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
         }
     }

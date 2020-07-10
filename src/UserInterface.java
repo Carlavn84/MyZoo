@@ -2,30 +2,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-//    String codeExitGame;
-boolean stayInGame;
-
-
-    String createCodeForExitTheGame() {
-        System.out.println("Press Q to exit the game when you want anytime");
+    void welcomeToGame(){
+        System.out.println("Hello there! Welcome to the San Diego Zoo!!!");
+    }
+    String makeChoiceToStayInGame() {
+        System.out.println("Press q to exit the game when you want anytime!");
         Scanner exitCode = new Scanner(System.in);
         String codeExitGame = exitCode.nextLine();
-//        exitCode.nextLine();
-        return codeExitGame ;
+        return codeExitGame;
     }
 
     boolean exitTheGame(String exitCode) {
-
-
-        if (exitCode == "q") {
-            stayInGame = false;
+        boolean notStayInGame;
+        if (exitCode.equals("q")) {
+           notStayInGame = true;
+        } else {
+            System.out.println("The exit code is not correct. Continue the game");
+            notStayInGame = false;
         }
-        else if (exitCode != "q") {
-            System.out.println("The exit code is not correct. Q is the correct one. Else continue the game");
-            stayInGame = true;
-        }
-
-    return stayInGame;
+     return notStayInGame;
     }
 
     void showOptions(List<Class<? extends Animal>> animalList) {
