@@ -1,37 +1,13 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Zoo {
-    public LinkedList<Animal> pets = new LinkedList<Animal>();
-    ;
-
-    List<Animal> createPets(Class<? extends Animal> animal) {
-        Scanner input = new Scanner(System.in);
-
-        Animal animalInput;
-
-        try {
-            animalInput = animal.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException("Oh oh, something went wrong", e);
-        }
-
-        pets.add(animalInput);
-        String nameInput;
-        String animalType = animal.getSimpleName();
-
-        System.out.println("How do you want to call your " + animalType + " ?");
-        nameInput = input.nextLine();
-        animalInput.setName(nameInput);
-        return pets;
+private String nameOfZoo;
+public Zoo(){
+}
+    public String getName() {
+        return this.nameOfZoo;
     }
 
-    void showPets() {
-        System.out.println("You have " + pets.size() + " pet(s)");
-
-        for (Animal animal : pets) {
-            System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
-        }
+    public void addName(String name) {
+        this.nameOfZoo = name;
     }
+
 }

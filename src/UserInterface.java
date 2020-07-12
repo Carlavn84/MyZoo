@@ -1,40 +1,54 @@
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-    void welcomeToGame() {
-        System.out.println("Hello there! Welcome to the San Diego Zoo!!!");
+
+    public LinkedList<Zoo> zoos = new LinkedList<Zoo>();
+
+
+    void welcomeToTheZoo() {
+        System.out.println("Hello there! Welcome to all wonderful zoos in the world!!!");
     }
 
-    void showOptions(List<Class<? extends Animal>> animalList) {
-        System.out.println("Which pet do you want to add?");
-
-        for (int i = 1; i <= animalList.size(); i++) {
-            Class<? extends Animal> animalType = animalList.get(i - 1);
-            String typeName = animalType.getSimpleName();
-            System.out.println(i + "." + typeName);
+    void showZoos() {
+        for (Zoo zoo : zoos) {
+            boolean listIsEmpty = zoos.isEmpty();
+            if (listIsEmpty == true) {
+                System.out.println("There is no zoo at the moment.");
+            } else {
+                System.out.println(zoo.getName());
+            }
         }
     }
 
-    Class<? extends Animal> addPet(List<Class<? extends Animal>> animalList) {
-        Scanner input = new Scanner(System.in);
+    void showMenuZoo() {
+        System.out.println("1. Add zoo");
+        System.out.println("2. Delete zoo");
+        System.out.println("3. Visit zoo");
+        System.out.println("4. Quit");
 
-        System.out.println("Enter the according number for adding your pet. Else press 0 to quit the game:");
-        int code = input.nextInt();
-        input.nextLine();
+    }
 
-        if (code == 0) {
-            System.exit(0);
+    List<Zoo> addZooWithAName() {
+        Scanner zooNameInput = new Scanner(System.in);
+        Zoo zoo = new Zoo();
+        System.out.println("Add a name for your zoo");
+        String zooName = zooNameInput.nextLine();
+        zoo.addName(zooName);
+        zoos.add(zoo);
+        return zoos;
+
+    }
+
+    List<Zoo> removeZoo(Zoo zoo) {
+
+        if (!zoos.contains(zoo)) {
+            System.out.println("The zoo does not exit");
+        } else {
+            zoos.remove(zoo);
+            return zoos;
         }
-
-        Class<? extends Animal> clazz;
-
-        try {
-            clazz = animalList.get(code - 1);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid number! Exit the program.");
-            return null;
-        }
-        return clazz;
+        return zoos;
     }
 }
