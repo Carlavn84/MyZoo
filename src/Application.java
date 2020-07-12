@@ -23,34 +23,26 @@ public class Application {
 
         UserInterface userInterface = new UserInterface();
 
-        Menu menuZoo = new Menu("zoo");
+        Zoos zoos = new Zoos();
 
-        while (true){
+        userInterface.welcomeToTheZoo();
 
+        while (true) {
+            userInterface.showMenuZoo();
+            zoos.showZoos();
+            zoos.addZooWithAName();
+zoos.visitZoo();
+userInterface.showMenuAnimal();
+userInterface.showOptions(animalClasses);
 
-
-            menuZoo.addItem();
-            menuZoo.deleteItem();
-            menuZoo.visitItem();
-            menuZoo.quitGame();
-
-            userInterface.showZoos();
-      userInterface.addZooWithAName();
-
-            userInterface.showZoos();
-            System.out.println("Remove a zoo");
-
-//            Zoo zoo1 = new Zoo();
-//
-//userInterface.removeZoo(zoo1)
-
-
-        }
+Class animal = zoos.addPet(animalClasses);
+zoos.createPets(animal);
+//            zoos.showZoos();
 
 
 
 
         }
+
     }
-
-
+}

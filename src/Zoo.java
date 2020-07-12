@@ -1,13 +1,14 @@
 public class Zoo {
-private String nameOfZoo;
+private String zooName;
 public Zoo(){
 }
     public String getName() {
-        return this.nameOfZoo;
+        return this.zooName;
     }
 
-    public void addName(String name) {
-        this.nameOfZoo = name;
+    public void setName(String name) {
+        this.zooName = name;
     }
 
 }
+

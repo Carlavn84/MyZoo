@@ -4,51 +4,37 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    public LinkedList<Zoo> zoos = new LinkedList<Zoo>();
-
-
     void welcomeToTheZoo() {
         System.out.println("Hello there! Welcome to all wonderful zoos in the world!!!");
-    }
-
-    void showZoos() {
-        for (Zoo zoo : zoos) {
-            boolean listIsEmpty = zoos.isEmpty();
-            if (listIsEmpty == true) {
-                System.out.println("There is no zoo at the moment.");
-            } else {
-                System.out.println(zoo.getName());
-            }
-        }
     }
 
     void showMenuZoo() {
         System.out.println("1. Add zoo");
         System.out.println("2. Delete zoo");
         System.out.println("3. Visit zoo");
-        System.out.println("4. Quit");
+        System.out.println("0. Quit");
 
     }
 
-    List<Zoo> addZooWithAName() {
-        Scanner zooNameInput = new Scanner(System.in);
-        Zoo zoo = new Zoo();
-        System.out.println("Add a name for your zoo");
-        String zooName = zooNameInput.nextLine();
-        zoo.addName(zooName);
-        zoos.add(zoo);
-        return zoos;
+    void showMenuAnimal() {
+        System.out.println("1. Add animal");
+        System.out.println("2. Delete animal");
+                System.out.println("0. Quit");
 
     }
 
-    List<Zoo> removeZoo(Zoo zoo) {
+    void showOptions(List<Class<? extends Animal>> animalList) {
+        System.out.println("Which pet do you want to add?");
 
-        if (!zoos.contains(zoo)) {
-            System.out.println("The zoo does not exit");
-        } else {
-            zoos.remove(zoo);
-            return zoos;
+        for (int i = 1; i <= animalList.size(); i++) {
+            Class<? extends Animal> animalType = animalList.get(i - 1);
+            String typeName = animalType.getSimpleName();
+            System.out.println(i + "." + typeName);
         }
-        return zoos;
     }
+
+
+
+
+
 }
