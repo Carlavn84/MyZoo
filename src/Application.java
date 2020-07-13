@@ -27,17 +27,20 @@ public class Application {
 
         userInterface.welcomeToTheZoo();
 
-        while (true) {
-            userInterface.showMenuZoo();
-            zoos.showZoos();
-            zoos.addZooWithAName();
-zoos.visitZoo();
-userInterface.showMenuAnimal();
-userInterface.showOptions(animalClasses);
+        zoos.showZoos();
+        zoos.addZooWithAName();
+        zoos.removeZoo();
+        zoos.visitZoo();
 
-Class animal = zoos.addPet(animalClasses);
-zoos.createPets(animal);
-//            zoos.showZoos();
+        Class animal = zoos.addPet(animalClasses);
+
+        List animals = zoos.createPets(animal);
+
+        zoos.deletePets();
+
+//        zoos.showPets();
+
+
 
 
 
@@ -45,4 +48,4 @@ zoos.createPets(animal);
         }
 
     }
-}
+

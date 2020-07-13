@@ -5,34 +5,38 @@ import java.util.Scanner;
 public class Zoos {
     public LinkedList<Zoo> zoos = new LinkedList<Zoo>();
     public LinkedList<Animal> animals = new LinkedList<Animal>();
+    public String nameOfZoo;
+    Zoo zoo = new Zoo();
+    Animal animal;
 
     void showZoos() {
-        for (Zoo zoo : zoos) {
-            boolean listIsEmpty = zoos.isEmpty();
-            if (listIsEmpty == true) {
-                System.out.println("There is no zoo at the moment.");
-            } else {
-                System.out.println(zoo.getName());
-            }
+
+        boolean listIsEmpty = zoos.isEmpty();
+        if (listIsEmpty == true) {
+            System.out.println("There is no zoo at the moment.");
+        } else {
+            System.out.println(zoo.getName());
         }
     }
 
     List<Zoo> addZooWithAName() {
         Scanner zooNameInput = new Scanner(System.in);
-        Zoo zoo = new Zoo();
+
         System.out.println("Add a name for your zoo");
         String zooName = zooNameInput.nextLine();
-        for (Zoo availableZoo: zoos) {
+        for (Zoo availableZoo : zoos) {
             String nameOfZooInZoos = availableZoo.getName();
-            if (zooName.equals(nameOfZooInZoos)){
+            if (zooName.equals(nameOfZooInZoos)) {
                 System.out.println("The zoo already exits. Use another name!");
 
+            } else {
+                zoo.setName(zooName);
+                zoos.add(zoo);
             }
         }
-        zoo.setName(zooName);
-        zoos.add(zoo);
         return zoos;
     }
+
 
     List<Zoo> removeZoo() {
         Scanner zooNameInput = new Scanner(System.in);
@@ -41,8 +45,9 @@ public class Zoos {
         String zooNameToDelete = zooNameInput.nextLine();
 
         for (Zoo zoo : zoos) {
-            String nameOfZoo = zoo.getName();
-            if (nameOfZoo.equals(zooNameToDelete)) {
+            String name = zoo.getName();
+            if (name.equals(zooNameToDelete)) {
+                System.out.println("Successfully remove!");
                 zoos.remove(zoo);
             } else {
                 System.out.println("The zoo does not exit");
@@ -57,30 +62,17 @@ public class Zoos {
         System.out.println("Which zoo do you want to visit?");
         String zooNameToVisit = zooNameInput.nextLine();
 
-        for (Zoo zoo : zoos) {
             String nameOfZoo = zoo.getName();
             if (!zooNameToVisit.equals(nameOfZoo)) {
                 System.out.println("The zoo does not exits");
-                return;
 
             }
-        else{
+            else {
                 System.out.println("There are  " + animals.size() + " pet(s) in the " + nameOfZoo + " zoo");
-
-                for (Animal animal : animals) {
-                    System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
-                    System.out.println("TETSTSTTSTST");
-                }
+                System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
+                System.out.println("TETSTSTTSTST");
+            }
         }
-        }
-
-
-    }
-
-
-
-
-
 
     Class<? extends Animal> addPet(List<Class<? extends Animal>> animalList) {
         Scanner input = new Scanner(System.in);
@@ -125,24 +117,25 @@ public class Zoos {
         return animals;
     }
 
-    List<Animal> deletePets(){
-
+    List<Animal> deletePets() {
         Scanner petNameInput = new Scanner(System.in);
 
         System.out.println("Which pet do you want to delete?");
         String petNameToDelete = petNameInput.nextLine();
 
-        for (Animal animal : animals) {
-            String nameOfPet = animal.getName();
-            if (nameOfPet.equals(petNameToDelete)) {
-                animals.remove(animal);
-            } else {
-                System.out.println("The pet does not exit");
-            }
+        String nameOfPet = animal.getName();
+        if (nameOfPet.equals(petNameToDelete)) {
+            animals.remove(animal);
+        } else {
+            System.out.println("The pet does not exit");
         }
+        System.out.println("Sucessfully delete a pet");
         return animals;
     }
 
-
-
+    void showPets() {
+        System.out.println("There are  " + animals.size() + " pet(s) in the " + nameOfZoo + " zoo");
+        System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
+        System.out.println("TETSTSTTSTST");
+    }
 }
