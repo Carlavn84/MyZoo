@@ -1,6 +1,7 @@
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
@@ -23,22 +24,43 @@ public class Application {
 
         UserInterface userInterface = new UserInterface();
 
-        Zoos zoos = new Zoos();
+        ZooClub zooClub = new ZooClub();
+
+        Menu menu = new Menu();
 
         userInterface.welcomeToTheZoo();
 
-        zoos.showZoos();
-        zoos.addZooWithAName();
-        zoos.removeZoo();
-        zoos.visitZoo();
 
-        Class animal = zoos.addPet(animalClasses);
 
-        List animals = zoos.createPets(animal);
+        while(true){
+            zooClub.showZoos();
+            menu.menuZoo();
+            Scanner input = new Scanner(System.in);
+            int inputCode = input.nextInt();
 
-        zoos.deletePets();
+            switch(inputCode){
+                case 1:
+                    zooClub.addZooWithAName();
+                    break;
+                case 2:
+                    zooClub.removeZoo();
+                    break;
+                case 3:
+                    Zoo zooName = zooClub.visitZoo();
+                    zoo.showPets(zooName);
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+            }
 
-//        zoos.showPets();
+
+
+
+        }
+
+
+
 
 
 

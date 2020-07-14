@@ -1,25 +1,14 @@
 public class Menu {
-    private String item;
-    public Menu(String nameItem){
-        this.item = nameItem;
-
-    }
-
-    public  void addItem(){
-        System.out.println("1. Add  "  + item);
-
-    }
-
-    public  void deleteItem(){
-       System.out.println("2.Delete " + item);
-    }
-
-    public void visitItem(){
-        System.out.println("3.Visit " + item);
-    }
-
-    public void quitGame(){
+    public void menuZoo() {
+        System.out.println("1.Add zoo");
+        System.out.println("2.Delete zoo");
+        System.out.println("3.Visit zoo");
         System.out.println("0.Quit");
     }
 
+    public void menuAnimal() {
+        System.out.println("1.Add animal");
+        System.out.println("2.Delete animal");
+        System.out.println("0.Quit");
+    }
 }
