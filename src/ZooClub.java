@@ -1,8 +1,13 @@
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ZooClub {
     private LinkedList<Zoo> zoos = new LinkedList<Zoo>();
+
+    public  LinkedList<Zoo> getZoos(){
+        return zoos;
+    }
 
     public void showZoos() {
         boolean listIsEmpty = zoos.isEmpty();
@@ -35,30 +40,17 @@ public class ZooClub {
         zoos.add(zoo);
     }
 
-    public void removeZoo() {
-        Scanner zooNameInput = new Scanner(System.in);
+    public void removeZoo(Zoo zoo) {
+              zoos.remove(zoo);
+            System.out.println("Successfuly removed " + zoo.getName());
+   }
 
-        System.out.println("Which zoo do you want to delete?");
-        String zooNameToDelete = zooNameInput.nextLine();
-
-        zoos.removeIf(zoo -> zoo.getName().equals(zooNameToDelete));
-    }
-
-    public void visitZoo() {
-        Scanner zooCodeNameInput = new Scanner(System.in);
-        int code = zooCodeNameInput.nextInt();
-
-        System.out.println("Select which zoo do you want to visit?");
-
-        Zoo zoo;
-
-        try {
-            zoo = zoos.get(code - 1);
-
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid number! Exit the program.");
-
+    public void visitZoo(Zoo zoo){
+        System.out.println(zoo.getName() + "has" + zoo.getAnimals().size() + " pet(s)" );
+        for (Animal animal: zoo.getAnimals()){
+            System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
         }
+    }
 
     }
-}
+

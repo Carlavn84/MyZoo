@@ -19,6 +19,11 @@ public class Zoo {
         this.zooName = name;
     }
 
+  public List<Animal> getAnimals(){
+        return  animals;
+  }
+
+  
 
     public Class<? extends Animal> addPet(List<Class<? extends Animal>> animalList) {
         Scanner input = new Scanner(System.in);
@@ -54,12 +59,14 @@ public class Zoo {
         }
 
         animals.add(animal);
+
         String nameInput;
         String animalType = pet.getSimpleName();
 
         System.out.println("How do you want to call your " + animalType + " ?");
         nameInput = input.nextLine();
         animal.setName(nameInput);
+
     }
 
     public void deletePets() {
@@ -78,11 +85,6 @@ public class Zoo {
         }
     }
 
-    public void showPets() {
-        for (Animal animal : animals) {
-            System.out.println("There are  " + animals.size() + " pet(s) in the " + zooName);
-            System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
-        }
-    }
+
 }
 
