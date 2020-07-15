@@ -20,34 +20,10 @@ public class Zoo {
     }
 
   public List<Animal> getAnimals(){
-        return  animals;
+        return  this.animals;
   }
 
-  
-
-    public Class<? extends Animal> addPet(List<Class<? extends Animal>> animalList) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Enter the according number for adding your pet. Else press 0 to quit the game:");
-        int code = input.nextInt();
-        input.nextLine();
-
-        if (code == 0) {
-            System.exit(0);
-        }
-
-        Class<? extends Animal> clazz;
-
-        try {
-            clazz = animalList.get(code - 1);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid number! Exit the program.");
-            return null;
-        }
-        return clazz;
-    }
-
-    public void createPets(Class<? extends Animal> pet) {
+      public void createPets(Class<? extends Animal> pet) {
         Scanner input = new Scanner(System.in);
 
         Animal animal;
@@ -69,22 +45,9 @@ public class Zoo {
 
     }
 
-    public void deletePets() {
-        Scanner petNameInput = new Scanner(System.in);
+    public void removeAnimal(Animal animal) {
+        animals.remove(animal);
 
-        System.out.println("Which pet do you want to delete?");
-        String petNameToDelete = petNameInput.nextLine();
-        for (Animal animal : animals) {
-            String nameOfPet = animal.getName();
-            if (nameOfPet.equals(petNameToDelete)) {
-                animals.remove(animal);
-                System.out.println("Successful delete a pet");
-            } else {
-                System.out.println("The pet does not exit");
-            }
-        }
     }
-
-
 }
 

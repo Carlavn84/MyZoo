@@ -32,7 +32,7 @@ public class Application {
             zooClub.addZooWithAName();
             LinkedList<Zoo> zoos = zooClub.getZoos();
             Zoo selectedZoo = userInterface.selectZoo(zoos);
-//            zooClub.removeZoo(selectedZoo);
+
             zooClub.visitZoo(selectedZoo);
 
 
