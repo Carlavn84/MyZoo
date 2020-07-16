@@ -1,10 +1,9 @@
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Application {
 
-    private static List<Class<? extends Animal>> animalClasses;
+    private static LinkedList<Class<? extends Animal>> animalClasses;
 
     static {
         animalClasses = new LinkedList();
@@ -27,15 +26,43 @@ public class Application {
 
         Menu menuZoo = new Menu("ZOO");
 
+
         userInterface.welcomeToTheZoo();
+
         while (true) {
-            zooClub.addZooWithAName();
-            LinkedList<Zoo> zoos = zooClub.getZoos();
-            Zoo selectedZoo = userInterface.selectZoo(zoos);
+            zooClub.getZoos();
+            zooClub.showZoos();
+            String selectOption = userInterface.selectOptionsOfZoo();
 
-            zooClub.visitZoo(selectedZoo);
+            switch (selectOption) {
+                case "Add zoo":
+                    zooClub.addZooWithAName();
+                    break;
+                case "Delete zoo":
+                    Zoo selectedZooForDelete = userInterface.selectZoo(zooClub.getZoos());
+                    zooClub.removeZoo(selectedZooForDelete);
+                   break;
+                case "Visit zoo":
+                    Zoo selectedZooForVisit = userInterface.selectZoo(zooClub.getZoos());
+                    zooClub.visitZoo(selectedZooForVisit);
+                    selectedZooForVisit.getAnimals();
 
+                    String selectOptionOfAnimals = userInterface.selectOptionsOfAnimal();
 
+                    switch (selectOptionOfAnimals) {
+                        case "Add animal":
+                            selectedZooForVisit.createPets(userInterface.selectAnimal(animalClasses));
+                            break;
+
+                        case "Delete animal":
+                            LinkedList<Animal> animals = selectedZooForVisit.getAnimals();
+                            selectedZooForVisit.removeAnimal(animals);
+                            selectedZooForVisit.getAnimals();
+                            break;
+                        case "Quit":
+                            break;
+                    }
+            }
         }
     }
 }

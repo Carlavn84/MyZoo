@@ -1,16 +1,55 @@
 import java.util.LinkedList;
-import java.util.List;
 
 
 public class UserInterface {
+
 
     public void welcomeToTheZoo() {
         System.out.println("Hello there! Welcome to all wonderful zoos in the world!!!");
 
     }
 
+    public String selectOptionsOfZoo() {
+        LinkedList<String> setOptions = new LinkedList<>();
+
+        Menu menuOptions = new Menu("Select option:");
+        setOptions.add("Add zoo");
+        setOptions.add("Delete zoo");
+        setOptions.add("Visit zoo");
+        setOptions.add("Quit");
+
+        for (int i = 1; i <= setOptions.size(); i++) {
+            String option = setOptions.get(i - 1);
+            menuOptions.addItem(i, option);
+        }
+
+        int selectIndex = menuOptions.menu();
+        String selectedOption = setOptions.get(selectIndex - 1);
+        return selectedOption;
+    }
+
+    public String selectOptionsOfAnimal() {
+        LinkedList<String> setOptionsOfAnimals = new LinkedList<>();
+
+        Menu menuOptions = new Menu("Select one of options:");
+
+        setOptionsOfAnimals.add("Add animal");
+        setOptionsOfAnimals.add("Delete animal");
+        setOptionsOfAnimals.add("Quit");
+
+        for (int i = 1; i <= setOptionsOfAnimals.size(); i++) {
+            String option = setOptionsOfAnimals.get(i - 1);
+            menuOptions.addItem(i, option);
+        }
+
+        int selectIndex = menuOptions.menu();
+        String selectedOption = setOptionsOfAnimals.get(selectIndex - 1);
+        return selectedOption;
+    }
+
     public Zoo selectZoo(LinkedList<Zoo> zoos) {
-        Menu zooMenu = new Menu("ZOO MENU");
+        Menu zooMenu = new Menu("ZOOS MENU");
+
         for (int i = 1; i <= zoos.size(); i++) {
             Zoo zoo = zoos.get(i - 1);
             zooMenu.addItem(i, zoo.getName());
@@ -22,10 +61,10 @@ public class UserInterface {
         return selectedZoo;
     }
 
-    public Class<? extends Animal> selectAnimal(List<Class<? extends Animal>> animalList) {
-        Menu animalMenu = new Menu("Animals Menu");
-        for (int i = 0; i <= animalList.size(); i++) {
-            Class<? extends Animal> clazz = animalList.get(i - 1);
+    public Class<? extends Animal> selectAnimal(LinkedList<Class<? extends Animal>> animals) {
+        Menu animalMenu = new Menu("ANIMALS MENU");
+        for (int i = 1; i <= animals.size(); i++) {
+            Class<? extends Animal> clazz = animals.get(i - 1);
             animalMenu.addItem(i, clazz.getSimpleName());
         }
 
@@ -39,7 +78,7 @@ public class UserInterface {
         Class<? extends Animal> selectedClazz;
 
         try {
-            selectedClazz  = animalList.get(selectedIndex - 1);
+            selectedClazz = animals.get(selectedIndex - 1);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Invalid number! Exit the program.");
             return null;

@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Zoo {
@@ -19,11 +18,11 @@ public class Zoo {
         this.zooName = name;
     }
 
-  public List<Animal> getAnimals(){
-        return  this.animals;
-  }
+    public LinkedList<Animal> getAnimals() {
+        return this.animals;
+    }
 
-      public void createPets(Class<? extends Animal> pet) {
+    public void createPets(Class<? extends Animal> pet) {
         Scanner input = new Scanner(System.in);
 
         Animal animal;
@@ -45,9 +44,15 @@ public class Zoo {
 
     }
 
-    public void removeAnimal(Animal animal) {
-        animals.remove(animal);
-
+    public void removeAnimal(LinkedList<Animal> animals) {
+        Scanner input = new Scanner(System.in);
+        String animalName = input.nextLine();
+        for (Animal animal : animals) {
+            animal.setName(animalName);
+            if (animal.getName().equals(animalName)) {
+                animals.remove(animal);
+            }
+        }
     }
 }
 

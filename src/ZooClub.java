@@ -1,11 +1,10 @@
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ZooClub {
     private LinkedList<Zoo> zoos = new LinkedList<Zoo>();
 
-    public  LinkedList<Zoo> getZoos(){
+    public LinkedList<Zoo> getZoos() {
         return zoos;
     }
 
@@ -41,16 +40,16 @@ public class ZooClub {
     }
 
     public void removeZoo(Zoo zoo) {
-              zoos.remove(zoo);
-            System.out.println("Successfuly removed " + zoo.getName());
-   }
+        zoos.remove(zoo);
 
-    public void visitZoo(Zoo zoo){
-        System.out.println(zoo.getName() + "has" + zoo.getAnimals().size() + " pet(s)" );
-        for (Animal animal: zoo.getAnimals()){
+    }
+
+    public void visitZoo(Zoo zoo) {
+        System.out.println(zoo.getName() + "  has  " + zoo.getAnimals().size() + " pet(s)");
+        for (Animal animal : zoo.getAnimals()) {
             System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
         }
     }
 
-    }
+}
 
