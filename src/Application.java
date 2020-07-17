@@ -38,27 +38,29 @@ public class Application {
                 case "Add zoo":
                     zooClub.addZooWithAName();
                     break;
+
                 case "Delete zoo":
                     Zoo selectedZooForDelete = userInterface.selectZoo(zooClub.getZoos());
                     zooClub.removeZoo(selectedZooForDelete);
                    break;
+
                 case "Visit zoo":
                     Zoo selectedZooForVisit = userInterface.selectZoo(zooClub.getZoos());
                     zooClub.visitZoo(selectedZooForVisit);
-                    selectedZooForVisit.getAnimals();
-
                     String selectOptionOfAnimals = userInterface.selectOptionsOfAnimal();
 
                     switch (selectOptionOfAnimals) {
                         case "Add animal":
-                            selectedZooForVisit.createPets(userInterface.selectAnimal(animalClasses));
+                            selectedZooForVisit.createPets(userInterface.selectAnimalToAddInZoo(animalClasses));
                             break;
 
                         case "Delete animal":
-                            LinkedList<Animal> animals = selectedZooForVisit.getAnimals();
-                            selectedZooForVisit.removeAnimal(animals);
-                            selectedZooForVisit.getAnimals();
+                            System.out.println(selectedZooForVisit.getAnimals());
+                          Animal removedAnimal = userInterface.selectAnimalToRemoveOutOfZoo(selectedZooForVisit.getAnimals());
+                          selectedZooForVisit.removeAnimal(removedAnimal);
+                         System.out.println(selectedZooForVisit.getAnimals());
                             break;
+
                         case "Quit":
                             break;
                     }

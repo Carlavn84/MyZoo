@@ -44,15 +44,9 @@ public class Zoo {
 
     }
 
-    public void removeAnimal(LinkedList<Animal> animals) {
-        Scanner input = new Scanner(System.in);
-        String animalName = input.nextLine();
-        for (Animal animal : animals) {
-            animal.setName(animalName);
-            if (animal.getName().equals(animalName)) {
-                animals.remove(animal);
-            }
-        }
+    public void removeAnimal(Animal removedAnimal) {
+
+   animals.remove(removedAnimal);
     }
 }
 

@@ -61,7 +61,7 @@ public class UserInterface {
         return selectedZoo;
     }
 
-    public Class<? extends Animal> selectAnimal(LinkedList<Class<? extends Animal>> animals) {
+    public Class<? extends Animal> selectAnimalToAddInZoo(LinkedList<Class<? extends Animal>> animals) {
         Menu animalMenu = new Menu("ANIMALS MENU");
         for (int i = 1; i <= animals.size(); i++) {
             Class<? extends Animal> clazz = animals.get(i - 1);
@@ -85,6 +85,21 @@ public class UserInterface {
         }
         return selectedClazz;
     }
+
+    public Animal selectAnimalToRemoveOutOfZoo(LinkedList<Animal> animals) {
+       Animal removedAnimal;
+
+        Menu zooMenu = new Menu("Select the animal you want to remove out of the zoo");
+
+        for (int i = 1; i <= animals.size(); i++) {
+            removedAnimal = animals.get(i - 1);
+            zooMenu.addItem(i, removedAnimal.getName() + " is a " + removedAnimal.getAnimalType());
+        }
+        int selectIndex = zooMenu.menu();
+        return animals.get(selectIndex - 1);
+    }
+
+
 }
 
 
