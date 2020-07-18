@@ -24,46 +24,42 @@ public class Application {
 
         ZooClub zooClub = new ZooClub();
 
-        Menu menuZoo = new Menu("ZOO");
-
-
         userInterface.welcomeToTheZoo();
 
         while (true) {
             zooClub.getZoos();
             zooClub.showZoos();
-            String selectOption = userInterface.selectOptionsOfZoo();
+            String selectOption = userInterface.selectOptionsOfZooMenu();
 
             switch (selectOption) {
                 case "Add zoo":
                     zooClub.addZooWithAName();
                     break;
-
                 case "Delete zoo":
                     Zoo selectedZooForDelete = userInterface.selectZoo(zooClub.getZoos());
                     zooClub.removeZoo(selectedZooForDelete);
-                   break;
-
+                    break;
                 case "Visit zoo":
                     Zoo selectedZooForVisit = userInterface.selectZoo(zooClub.getZoos());
                     zooClub.visitZoo(selectedZooForVisit);
-                    String selectOptionOfAnimals = userInterface.selectOptionsOfAnimal();
 
+                    String selectOptionOfAnimals = userInterface.selectOptionsOfAnimalMenu();
                     switch (selectOptionOfAnimals) {
                         case "Add animal":
                             selectedZooForVisit.createPets(userInterface.selectAnimalToAddInZoo(animalClasses));
                             break;
-
                         case "Delete animal":
                             System.out.println(selectedZooForVisit.getAnimals());
-                          Animal removedAnimal = userInterface.selectAnimalToRemoveOutOfZoo(selectedZooForVisit.getAnimals());
-                          selectedZooForVisit.removeAnimal(removedAnimal);
-                         System.out.println(selectedZooForVisit.getAnimals());
+                            Animal removedAnimal = userInterface.selectAnimalToRemoveOutOfZoo(selectedZooForVisit.getAnimals());
+                            selectedZooForVisit.removeAnimal(removedAnimal);
+                            System.out.println(selectedZooForVisit.getAnimals());
                             break;
-
                         case "Quit":
                             break;
                     }
+                    break;
+                case "Quit":
+                    break;
             }
         }
     }

@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class ZooClub {
     private LinkedList<Zoo> zoos = new LinkedList<Zoo>();
 
+    public ZooClub() {
+    }
+
     public LinkedList<Zoo> getZoos() {
         return zoos;
     }
@@ -50,6 +53,5 @@ public class ZooClub {
             System.out.println(animal.getName() + " " + "is a" + " " + animal.getAnimalType() + " and has" + " " + animal.getLegs() + " " + "leg(s)");
         }
     }
-
 }
 

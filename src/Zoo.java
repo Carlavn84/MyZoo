@@ -45,8 +45,7 @@ public class Zoo {
     }
 
     public void removeAnimal(Animal removedAnimal) {
-
-   animals.remove(removedAnimal);
+        animals.remove(removedAnimal);
     }
 }
 

@@ -20,7 +20,7 @@ public class Menu {
         Scanner input = new Scanner(System.in);
         System.out.println(title);
         for (Map.Entry<Integer, String> entry : menuItems.entrySet()) {
-            System.out.println(entry.getKey() + ")" + entry.getValue());
+            System.out.println(entry.getKey() + "." + entry.getValue());
         }
         int numberInput = input.nextInt();
         return numberInput;
