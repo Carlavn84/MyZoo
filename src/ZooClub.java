@@ -25,7 +25,7 @@ public class ZooClub {
     }
 
     public void addZooWithAName() {
-        System.out.println("Add a name for your zoo");
+        System.out.print("Add a name for your zoo: ");
         Scanner zooNameInput = new Scanner(System.in);
         String zooName = zooNameInput.nextLine();
         Zoo zoo = new Zoo();
